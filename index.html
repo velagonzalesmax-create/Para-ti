@@ -1,97 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Galaxia de Amor</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(circle, #1a0a1a, #000);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Galàxia de Amor❤️</title>
 
-        /* El Corazón Central */
-        .heart-main {
-            font-size: 80px;
-            color: #ff4d6d;
-            text-shadow: 0 0 20px #ff4d6d;
-            animation: pulse 1.5s infinite;
-            z-index: 10;
-        }
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+/* ESTRELLAS */
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  animation: twinkle 2s infinite alternate;
+}
 
-        /* Contenedor de la Galaxia */
-        .galaxy {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            animation: rotate 10s linear infinite;
-        }
+@keyframes twinkle{
+  from{opacity:0.2;}
+  to{opacity:1;}
+}
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+/* TEXTO CENTRAL */
+.center{
+  position:absolute;
+  font-size:45px;
+  color:#ff4d6d;
+  text-shadow:0 0 20px #ff4d6d, 0 0 40px #ff1e4d;
+  z-index:10;
+}
 
-        /* Corazones que orbitan */
-        .orbit-heart {
-            position: absolute;
-            font-size: 25px;
-            color: #ffb3c1;
-        }
+/* CORAZONES FLOTANDO */
+.heart{
+  position:absolute;
+  color:red;
+  animation: float linear infinite;
+}
 
-        /* Posiciones de la órbita */
-        .h1 { top: 0; left: 50%; }
-        .h2 { bottom: 0; left: 50%; }
-        .h3 { left: 0; top: 50%; }
-        .h4 { right: 0; top: 50%; }
+@keyframes float{
+  0%{transform: translateY(100vh);}
+  100%{transform: translateY(-10vh);}
+}
 
-        /* Textos */
-        .texts {
-            text-align: center;
-            margin-top: 40px;
-            z-index: 20;
-        }
+/* CORAZONES GIRANDO */
+.orbit{
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  animation: rotate 10s linear infinite;
+}
 
-        h1 { font-size: 2.5rem; margin: 10px 0; text-shadow: 0 0 10px #ff4d6d; }
-        p { font-size: 1.2rem; opacity: 0.9; }
+.orbit span{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:25px;
+}
 
-    </style>
+@keyframes rotate{
+  from{transform: rotate(0deg);}
+  to{transform: rotate(360deg);}
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="galaxy">
-        <div class="orbit-heart h1">💖</div>
-        <div class="orbit-heart h2">💝</div>
-        <div class="orbit-heart h3">💗</div>
-        <div class="orbit-heart h4">💓</div>
-    </div>
+<div class="center">Milagros ❤️</div>
 
-    <div class="heart-main">❤️</div>
+<div class="orbit">
+  <span>💖</span>
+</div>
 
-    <div class="texts">
-        <h1>Te Amo Muchote, [Milagros]</h1>
-        <p>Eres mi universo entero ✨</p>
-        <p style="font-size: 0.9rem;">De: [Smith]</p>
-    </div>
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-    <audio autoplay loop>
-        <source src="TU_MUSICA.mp3" type="audio/mpeg">
-    </audio>
+<script>
+
+/* Crear estrellas */
+for(let i=0;i<150;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+  star.style.animationDuration=Math.random()*3+1+"s";
+  document.body.appendChild(star);
+}
+
+/* Crear corazones flotando */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
+  heart.style.animationDuration=Math.random()*3+3+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(createHeart,300);
+
+</script>
 
 </body>
 </html>
